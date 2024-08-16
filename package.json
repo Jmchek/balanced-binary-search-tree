@@ -1,0 +1,19 @@
+{
+  "name": "balanced-binary-search-tree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jmchek/balanced-binary-search-tree.git"
+  },
+  "author": "Joe Chek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jmchek/balanced-binary-search-tree/issues"
+  },
+  "homepage": "https://github.com/Jmchek/balanced-binary-search-tree#readme"
+}
