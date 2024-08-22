@@ -2,4 +2,24 @@ import Tree from "./Tree.js";
 
 const test = Tree();
 
-test.buildTree([1,2]);
+let someArr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+let someSmallArr = [1,2,3,4,5];
+
+// let start = 0;
+// let end = someSmallArr.length - 1;
+
+// let mid = parseInt((start + end) / 2);
+
+
+// console.log(test.buildTree(test.sortAndRemoveDuplicates(someSmallArr)));
+// console.log(test.sortAndRemoveDuplicates(someSmallArr))
+
+// console.log(test.buildTree(someArr))
+// test.buildTree(someArr);
+console.log(test.prettyPrint(test.buildTree(someArr)));
+console.log(test.prettyPrint(test.insert(29)));
+
+
+// console.log(someSmallArr.slice(mid + 1, end + 1));
+
+// test.buildTree([1,2]);
