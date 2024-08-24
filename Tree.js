@@ -14,7 +14,7 @@ export default function Tree() {
         }
 
       let mid = parseInt((start + end) / 2);
-      let node = new Node(array[mid]);
+      let node = Node(array[mid]);
 
       node.left = buildTree(array.slice(start, mid));
       node.right = buildTree(array.slice(mid + 1, end + 1));
@@ -23,18 +23,36 @@ export default function Tree() {
     }
 
     function insert(value) {
-
-      if (root === null)
-          return new Node(value);
-    
-      if (root.data === value)
-          return root;
+      
+      // console.log(root)
+      const parent = root;
+      // console.log(root);
+      if (root === null){
+        return Node(value);
+      }
           
-      if (value < root.data)
-          root.left = insert(value);
-      else if (value > root.data)
-          root.right = insert(value);
-  
+    
+      if (root.data === value){
+        return root;
+      }
+        
+          
+      if (value < root.data){
+        root = root.left;
+        // console.log(root);
+        root = insert(value);
+      } else if (value > root.data){
+        root = root.right;
+        // console.log(root);
+        root = insert(value);
+      }
+
+      // console.log(root);
+      // console.log(parent.left);
+
+      // console.log("this triggers")
+      
+      // prettyPrint(parent);
       return root;
   }
 
@@ -64,5 +82,5 @@ export default function Tree() {
       };
      
 
-    return {buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {root,buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }
