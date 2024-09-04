@@ -3,6 +3,10 @@ import Node from "./Node.js";
 export default function Tree() {
     let root = null;
 
+    const getRoot = () => {
+      return root;
+    }
+
     const buildTree = (array) => {
       array = sortAndRemoveDuplicates(array);
       let start = 0;
@@ -23,38 +27,44 @@ export default function Tree() {
     }
 
     function insert(value) {
-      
-      // console.log(root)
-      const parent = root;
-      // console.log(root);
+
       if (root === null){
         return Node(value);
       }
           
-    
       if (root.data === value){
         return root;
       }
-        
           
       if (value < root.data){
         root = root.left;
-        // console.log(root);
         root = insert(value);
       } else if (value > root.data){
         root = root.right;
-        // console.log(root);
         root = insert(value);
+
       }
-
       // console.log(root);
-      // console.log(parent.left);
 
-      // console.log("this triggers")
-      
-      // prettyPrint(parent);
       return root;
   }
+
+//   function insert(root, value) {
+
+//     if (root === null)
+//         return new Node(value);
+        
+//     // Duplicates not allowed    
+//     if (root.data === value)
+//         return root;
+        
+//     if (value < root.data)
+//         root.left = insert(root.left, value);
+//     else if (value > root.data)
+//         root.right = insert(root.right, value);
+
+//     return root;
+// }
 
     const compareNumbers = (a, b) => {
       return a - b;
@@ -82,5 +92,5 @@ export default function Tree() {
       };
      
 
-    return {root,buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }

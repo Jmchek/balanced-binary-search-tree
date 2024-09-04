@@ -17,10 +17,14 @@ let someSmallArr = [1,2,3,4,5];
 // console.log(test.buildTree(someArr))
 // test.buildTree(someArr);
 test.buildTree(someSmallArr);
+test.insert(6);
 
-// console.log(test.prettyPrint(test.root));
+console.log(test.prettyPrint(test.getRoot()));
 
-console.log(test.root);
+// console.log(test.buildTree(someSmallArr));
+// console.log(test.prettyPrint(test.buildTree(someSmallArr)));
+
+// console.log(test.root);
 // console.log(someSmallArr.slice(mid + 1, end + 1));
 
 // test.buildTree([1,2]);
