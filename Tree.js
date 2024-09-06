@@ -2,6 +2,7 @@ import Node from "./Node.js";
 
 export default function Tree() {
     let root = null;
+    let parent = root;
 
     const getRoot = () => {
       return root;
@@ -23,48 +24,24 @@ export default function Tree() {
       node.left = buildTree(array.slice(start, mid));
       node.right = buildTree(array.slice(mid + 1, end + 1));
       root = node;
+      parent = root;
       return root;
     }
 
-    function insert(value) {
-
-      if (root === null){
-        return Node(value);
-      }
+    function insert(value, currentNode = root) {
+      if (currentNode === null)
+        return new Node(value);
+            
+      if (currentNode.data === value)
+          return currentNode;
           
-      if (root.data === value){
-        return root;
-      }
-          
-      if (value < root.data){
-        root = root.left;
-        root = insert(value);
-      } else if (value > root.data){
-        root = root.right;
-        root = insert(value);
+      if (value < currentNode.data)
+          currentNode.left = insert(value, currentNode.left);
+      else if (value > currentNode.data)
+          currentNode.right = insert(value, currentNode.right);
 
-      }
-      // console.log(root);
-
-      return root;
+      return currentNode;
   }
-
-//   function insert(root, value) {
-
-//     if (root === null)
-//         return new Node(value);
-        
-//     // Duplicates not allowed    
-//     if (root.data === value)
-//         return root;
-        
-//     if (value < root.data)
-//         root.left = insert(root.left, value);
-//     else if (value > root.data)
-//         root.right = insert(root.right, value);
-
-//     return root;
-// }
 
     const compareNumbers = (a, b) => {
       return a - b;

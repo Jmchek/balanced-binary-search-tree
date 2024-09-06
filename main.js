@@ -16,8 +16,8 @@ let someSmallArr = [1,2,3,4,5];
 
 // console.log(test.buildTree(someArr))
 // test.buildTree(someArr);
-test.buildTree(someSmallArr);
-test.insert(6);
+test.buildTree(someArr);
+test.insert(300);
 
 console.log(test.prettyPrint(test.getRoot()));
 
