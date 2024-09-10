@@ -2,7 +2,6 @@ import Node from "./Node.js";
 
 export default function Tree() {
     let root = null;
-    let parent = root;
 
     const getRoot = () => {
       return root;
@@ -24,7 +23,6 @@ export default function Tree() {
       node.left = buildTree(array.slice(start, mid));
       node.right = buildTree(array.slice(mid + 1, end + 1));
       root = node;
-      parent = root;
       return root;
     }
 
@@ -41,7 +39,38 @@ export default function Tree() {
           currentNode.right = insert(value, currentNode.right);
 
       return currentNode;
-  }
+    }
+
+    function getSuccessor(curr) {
+      curr = curr.right;
+      while (curr !== null && curr.left !== null) {
+          curr = curr.left;
+      }
+      return curr;
+    }
+
+    function deleteItem(x, currentNode = root) {
+        if (currentNode === null) {
+            return currentNode;
+        }
+
+        if (currentNode.data > x) {
+            currentNode.left = deleteItem(x, currentNode.left);
+        } else if (currentNode.data < x) {
+            currentNode.right = deleteItem(x, currentNode.right);
+        } else {
+            if (currentNode.left === null) 
+                return currentNode.right;
+
+            if (currentNode.right === null) 
+                return currentNode.left;
+
+            let succ = getSuccessor(currentNode);
+            currentNode.data = succ.data;
+            currentNode.right = deleteItem(succ.data, currentNode.right);
+        }
+        return currentNode;
+    }
 
     const compareNumbers = (a, b) => {
       return a - b;
@@ -67,7 +96,24 @@ export default function Tree() {
           prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
         }
       };
+
+      const find = (value, currentNode = root) => {
+        let foundNode;
+
+        if (currentNode === null) {
+          return currentNode;
+        }
+
+        if (currentNode.data > value) {
+            foundNode = find(value, currentNode.left);
+        } else if (currentNode.data < value) {
+            foundNode = find(value, currentNode.right);
+        } else if (currentNode.data === value){
+          return currentNode;
+        }
+        return foundNode;
+      }
      
 
-    return {getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }
