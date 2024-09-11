@@ -113,7 +113,27 @@ export default function Tree() {
         }
         return foundNode;
       }
+
+      const levelOrder = (callback, currentNode = root, Q = []) =>  {
+        if(callback === undefined) throw new Error('Please provide a callback function as a parameter.');
+        if(currentNode === null) return;
+        
+        Q.push(currentNode);  
+
+        while(Q !== undefined || Q.length !== 0) {
+          currentNode = Q.pop();
+
+          callback(currentNode);
+
+          if(currentNode.left !== null) Q.unshift(currentNode.left);
+          if(currentNode.right !== null) Q.unshift(currentNode.right);
+        }
+      }
+
+      const printToConsole = (someNode) => {
+        console.log(someNode);
+      }
      
 
-    return {find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }
