@@ -130,10 +130,40 @@ export default function Tree() {
         }
       }
 
+      const levelOrderRecursive = (callback) => {
+        if(callback === undefined) throw new Error('Please provide a callback function as a parameter.');
+
+        let result = []
+    
+         function lot(node, l){
+             if(!node) return; 
+    
+             if (result[l]){
+                 result[l].push(node)
+             } else {
+                 result[l] = [node]
+             }
+    
+             lot(node.left, l+1)
+             lot(node.right, l+1)
+         }
+    
+         lot(root, 0);
+
+         for(var i = 0; i < result.length; i++){
+            for(var j = 0; j < result[i].length; j++){
+        
+                callback(result[i][j]);
+            }
+          }
+        
+         return result
+    }
+
       const printToConsole = (someNode) => {
         console.log(someNode);
       }
      
 
-    return {printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }
