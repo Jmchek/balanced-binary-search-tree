@@ -209,7 +209,25 @@ export default function Tree() {
         return Q;
 
       }
+
+      const height = (currentNode = root, level = 0, result = []) =>  { 
+
+        if(!currentNode) return; 
+
+    
+        if (result[level]){
+            result[level].push(currentNode.data)
+        } else {
+            result[level] = [currentNode.data]
+        }
+
+        height(currentNode.left, level+1, result);
+        height(currentNode.right, level+1, result);
+
+
+        return result.length;
+      }
      
 
-    return {postOrder, preOrder, inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {height, postOrder, preOrder, inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }

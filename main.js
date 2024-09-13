@@ -23,9 +23,11 @@ test.insert(6);
 // test.deleteItem(4);
 console.log(test.prettyPrint(test.getRoot()));
 
+console.log(test.height(test.getRoot()));
+
 // console.log(test.find(324));
 // test.levelOrder();
-console.log(test.postOrder(test.printToConsole));
+// console.log(test.postOrder(test.printToConsole));
 // console.log(test.levelOrderRecursive());
 
 // console.log(test.buildTree(someSmallArr));
