@@ -21,11 +21,11 @@ test.insert(6);
 
 // console.log(test.prettyPrint(test.getRoot()));
 // test.deleteItem(4);
-// console.log(test.prettyPrint(test.getRoot()));
+console.log(test.prettyPrint(test.getRoot()));
 
 // console.log(test.find(324));
 // test.levelOrder();
-test.inOrder(test.printToConsole);
+console.log(test.postOrder(test.printToConsole));
 // console.log(test.levelOrderRecursive());
 
 // console.log(test.buildTree(someSmallArr));

@@ -178,7 +178,38 @@ export default function Tree() {
         return Q;
 
       }
+
+      const preOrder = (callback, currentNode = root, Q = []) =>  {
+        if(callback === undefined) throw new Error('Please provide a callback function as a parameter.');
+        if(currentNode === null) return;
+
+        callback(currentNode);
+        Q.push(currentNode.data);
+
+        preOrder(callback, currentNode.left, Q);
+        
+        preOrder(callback, currentNode.right, Q);
+
+        return Q;
+
+      }
+
+      const postOrder = (callback, currentNode = root, Q = []) =>  {
+        if(callback === undefined) throw new Error('Please provide a callback function as a parameter.');
+        if(currentNode === null) return;
+
+        
+        postOrder(callback, currentNode.left, Q);
+        
+        postOrder(callback, currentNode.right, Q);
+
+        callback(currentNode);
+        Q.push(currentNode.data);
+
+        return Q;
+
+      }
      
 
-    return {inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {postOrder, preOrder, inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }
