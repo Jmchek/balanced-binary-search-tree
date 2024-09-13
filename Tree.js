@@ -7,6 +7,10 @@ export default function Tree() {
       return root;
     }
 
+    const getRootPlusOne = () => {
+      return root.left;
+    }
+
     const buildTree = (array) => {
       array = sortAndRemoveDuplicates(array);
       let start = 0;
@@ -227,7 +231,39 @@ export default function Tree() {
 
         return result.length;
       }
+
+      const depth = (someNode, currentNode = root, level = 0, result = [], foundData = someNode.data) =>  { 
+        let depthCount;
+
+        if(!currentNode) return; 
+    
+        if (result[level]){
+          if(currentNode.data == foundData){
+            result[level].push("node is here");
+          }
+            result[level].push(currentNode.data)
+        } else {
+          
+            result[level] = [currentNode.data];
+            if(currentNode.data == foundData){
+              result[level].push("node is here");
+            }
+        }
+
+        depth(someNode, currentNode.left, level+1, result, foundData);
+        depth(someNode, currentNode.right, level+1, result, foundData);
+
+        for(var i = 0; i < result.length; i++){
+          for(var j = 0; j < result[i].length; j++){
+      
+              if(result[i][j] == "node is here"){
+                depthCount = i;
+              }
+          }
+        }
+        return depthCount;
+      }
      
 
-    return {height, postOrder, preOrder, inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {getRootPlusOne, depth, height, postOrder, preOrder, inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }
