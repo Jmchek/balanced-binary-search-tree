@@ -163,7 +163,22 @@ export default function Tree() {
       const printToConsole = (someNode) => {
         console.log(someNode);
       }
+
+      const inOrder = (callback, currentNode = root, Q = []) =>  {
+        if(callback === undefined) throw new Error('Please provide a callback function as a parameter.');
+        if(currentNode === null) return;
+
+        inOrder(callback, currentNode.left, Q);
+
+        callback(currentNode);
+        Q.push(currentNode.data);
+        
+        inOrder(callback, currentNode.right, Q);
+
+        return Q;
+
+      }
      
 
-    return {levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }

@@ -19,13 +19,13 @@ let someSmallArr = [1,2,3,4,5];
 test.buildTree(someArr);
 test.insert(6);
 
-console.log(test.prettyPrint(test.getRoot()));
+// console.log(test.prettyPrint(test.getRoot()));
 // test.deleteItem(4);
 // console.log(test.prettyPrint(test.getRoot()));
 
 // console.log(test.find(324));
 // test.levelOrder();
-test.levelOrderRecursive(test.printToConsole);
+test.inOrder(test.printToConsole);
 // console.log(test.levelOrderRecursive());
 
 // console.log(test.buildTree(someSmallArr));
