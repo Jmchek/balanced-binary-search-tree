@@ -2,8 +2,8 @@ import Tree from "./Tree.js";
 
 const test = Tree();
 
-let someArr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-let someSmallArr = [1,2,3,4,5];
+let someArr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 33];
+let someSmallArr = [6, 2, 7, 5, 4, 1, 8, 9, 3, 10, 11];
 
 // let start = 0;
 // let end = someSmallArr.length - 1;
@@ -16,14 +16,18 @@ let someSmallArr = [1,2,3,4,5];
 
 // console.log(test.buildTree(someArr))
 // test.buildTree(someArr);
-test.buildTree(someArr);
-test.insert(6);
+test.buildTree(someSmallArr);
+// test.insert(3);
+// test.insert(10);
+// test.insert(11);
 
 // console.log(test.prettyPrint(test.getRoot()));
 // test.deleteItem(4);
 console.log(test.prettyPrint(test.getRoot()));
 
-console.log(test.depth(test.getRoot()));
+// console.log(test.depth(test.getRoot()));
+
+console.log(test.isBalanced());
 
 // console.log(test.find(324));
 // test.levelOrder();

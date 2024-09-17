@@ -261,9 +261,34 @@ export default function Tree() {
               }
           }
         }
+
         return depthCount;
+      }
+
+      const isBalanced = (currentNode = root, level = 0, depthCount = []) =>  { 
+        let balanced;
+
+        if(!currentNode) return; 
+
+    
+        if (depthCount[level]){
+          depthCount[level].push(depth(currentNode));
+        } else {
+          depthCount[level] = [depth(currentNode)];
+        }
+
+        isBalanced(currentNode.left, level+1, depthCount);
+        isBalanced(currentNode.right, level+1, depthCount);
+
+        if(depthCount[depthCount.length - 1].length === 1 && depthCount[depthCount.length - 2].length === 1){
+          balanced = false;
+        } else {
+          balanced = true;
+        }
+
+        return balanced;
       }
      
 
-    return {getRootPlusOne, depth, height, postOrder, preOrder, inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+    return {isBalanced, getRootPlusOne, depth, height, postOrder, preOrder, inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }
