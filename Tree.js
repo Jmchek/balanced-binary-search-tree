@@ -265,26 +265,41 @@ export default function Tree() {
         return depthCount;
       }
 
-      const isBalanced = (currentNode = root, level = 0, depthCount = []) =>  { 
+      const isBalanced = (currentNode = root, level = 0, depthCount = [],leftSide = [], rightSide = []) =>  { 
         let balanced;
 
         if(!currentNode) return; 
 
-    
-        if (depthCount[level]){
-          depthCount[level].push(depth(currentNode));
+        // console.log(currentNode.data, root.data);
+        if (leftSide[level] && currentNode.data < root.data){
+            leftSide[level].push(depth(currentNode));
+          // depthCount[level].push(depth(currentNode));
+        } else if(rightSide[level] && currentNode.data > root.data){
+          rightSide[level].push(depth(currentNode));
         } else {
-          depthCount[level] = [depth(currentNode)];
+
+          if(currentNode.data < root.data){
+            leftSide[level] = [depth(currentNode)];
+            console.log(leftSide);
+          } else if (currentNode.data > root.data) {
+            rightSide[level] = [depth(currentNode)];
+          }
+          // depthCount[level] = [depth(currentNode)];
         }
 
-        isBalanced(currentNode.left, level+1, depthCount);
-        isBalanced(currentNode.right, level+1, depthCount);
+        isBalanced(currentNode.left, level+1, depthCount, leftSide, rightSide);
+        isBalanced(currentNode.right, level+1, depthCount, leftSide, rightSide);
 
-        if(depthCount[depthCount.length - 1].length === 1 && depthCount[depthCount.length - 2].length === 1){
+        // leftSide.shift();
+
+        if(Math.abs(Math.max(...leftSide) - Math.max(...rightSide)) >= 2){
           balanced = false;
         } else {
           balanced = true;
         }
+
+        // console.log("leftSide = " + leftSide);
+        // console.log("rightSide = " + rightSide);
 
         return balanced;
       }

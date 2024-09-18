@@ -18,8 +18,8 @@ let someSmallArr = [6, 2, 7, 5, 4, 1, 8, 9, 3, 10, 11];
 // test.buildTree(someArr);
 test.buildTree(someSmallArr);
 // test.insert(3);
-// test.insert(10);
-// test.insert(11);
+test.insert(12);
+test.insert(13);
 
 // console.log(test.prettyPrint(test.getRoot()));
 // test.deleteItem(4);
