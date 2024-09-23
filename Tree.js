@@ -297,7 +297,23 @@ export default function Tree() {
 
         return balanced;
       }
-     
 
-    return {isBalanced, getRootPlusOne, depth, height, postOrder, preOrder, inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
+      const rebalance = (Q = [], currentNode = root) => {
+ 
+        if(currentNode === null) return;
+
+        rebalance(Q, currentNode.left);
+
+        Q.push(currentNode.data);
+        
+        rebalance(Q, currentNode.right);
+
+        buildTree(Q);
+      }
+     
+      const randomArray = () => {
+        return Array.from({length: Math.floor(Math.random() * 100)}, () => Math.floor(Math.random() * 40));
+      }
+
+    return {randomArray, rebalance, isBalanced, getRootPlusOne, depth, height, postOrder, preOrder, inOrder, levelOrderRecursive, printToConsole, levelOrder, find, deleteItem, getRoot, buildTree, prettyPrint, sortAndRemoveDuplicates, insert};
 }
